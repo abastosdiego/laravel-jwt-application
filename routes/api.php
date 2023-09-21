@@ -46,8 +46,9 @@ Route::middleware('api')->group(function () {
         return 'cheguei na rota de teste de api!';
     });
 
-    Route::get('/produtos', [ProdutosController::class, 'index']);
-    Route::get('/produto/{id}', [ProdutosController::class, 'show']);
+    Route::get('/produtos', [ProdutosController::class, 'index'])->name('produtos.index');
+    Route::get('/produtos/{id}', [ProdutosController::class, 'show'])->name('produtos.show');
+    Route::post('/produtos', [ProdutosController::class, 'store'])->name('produtos.store');
 
 });
 

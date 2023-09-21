@@ -29,9 +29,9 @@ class ProdutosController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(int $id)
     {
-        echo 'estou no show ' . $id;
+        return Produto::findOrFail($id);
     }
 
     /**
@@ -39,7 +39,9 @@ class ProdutosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Produto::create($request->all());
+        //dd($request->all());
+        //echo 'cheguei no store';
     }
 
 

@@ -9,6 +9,7 @@ class Produto extends Model
 {
     use HasFactory;
     protected $table = 'produtos';
+    protected $fillable = ['descricao', 'tipo_produto'];
 
     /**
      * Define a relação entre Produto e Tipo de Produto
