@@ -49,6 +49,7 @@ Route::middleware('api')->group(function () {
     Route::get('/produtos', [ProdutosController::class, 'index'])->name('produtos.index');
     Route::get('/produtos/{id}', [ProdutosController::class, 'show'])->name('produtos.show');
     Route::post('/produtos', [ProdutosController::class, 'store'])->name('produtos.store');
+    Route::put('/produtos/{produto}', [ProdutosController::class, 'update'])->name('produtos.update');
 
 });
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AlunoRequest;
 use App\Models\Produto;
 use Illuminate\Http\Request;
 
@@ -37,20 +38,36 @@ class ProdutosController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(AlunoRequest $request)
     {
-        Produto::create($request->all());
-        //dd($request->all());
-        //echo 'cheguei no store';
+        // A Validação passou para dentro do AlunoRequest
+        /*$request->validate([
+            'descricao' => ['required','string','between:2,100'],
+            'tipo_produto' => ['required','int','exists:tipo_produtos,id']
+        ]);*/
+
+        return response(
+            Produto::create($request->all()),
+            201
+        );
     }
 
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(AlunoRequest $request, Produto $produto)
     {
-        //
+        // A Validação passou para dentro do AlunoRequest
+        /*
+        $request->validate([
+            'descricao' => ['required','string','between:2,100'],
+            'tipo_produto' => ['required','int','exists:tipo_produtos,id']
+        ]);*/
+
+        $produto->update($request->all());
+
+        return $produto;
     }
 
     /**
