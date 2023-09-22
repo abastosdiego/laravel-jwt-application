@@ -33,8 +33,6 @@ class AuthController extends Controller
      */
     public function me()
     {
-        echo 'cheguei no me';
-        exit;
         if (auth()->user()) {
             return response()->json(['status' => 'success', 'user' => auth()->user()]);
         } else {

@@ -2,22 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\AlunoRequest;
+use App\Http\Requests\ProdutoRequest;
 use App\Models\Produto;
-use Illuminate\Http\Request;
 
 class ProdutoController extends Controller
 {
-/**
-     * Create a new AuthController instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //$this->middleware('auth:api');
-    }
-
     /**
      * Display a listing of the resource.
      */
@@ -38,9 +27,9 @@ class ProdutoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(AlunoRequest $request)
+    public function store(ProdutoRequest $request)
     {
-        // A Validação passou para dentro do AlunoRequest
+        // A Validação passou para dentro do ProdutoRequest
         /*$request->validate([
             'descricao' => ['required','string','between:2,100'],
             'tipo_produto' => ['required','int','exists:tipo_produtos,id']
@@ -49,7 +38,7 @@ class ProdutoController extends Controller
         Produto::create($request->all());
 
         return response(
-            '{"message": "Produto cadastrado com sucesso!"',
+            '{"message": "Cadastrado com sucesso!"',
             201
         );
     }
@@ -58,9 +47,9 @@ class ProdutoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(AlunoRequest $request, Produto $produto)
+    public function update(ProdutoRequest $request, Produto $produto)
     {
-        // A Validação passou para dentro do AlunoRequest
+        // A Validação passou para dentro do ProdutoRequest
         /*
         $request->validate([
             'descricao' => ['required','string','between:2,100'],
