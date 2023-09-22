@@ -6,7 +6,7 @@ use App\Http\Requests\AlunoRequest;
 use App\Models\Produto;
 use Illuminate\Http\Request;
 
-class ProdutosController extends Controller
+class ProdutoController extends Controller
 {
 /**
      * Create a new AuthController instance.
@@ -15,7 +15,7 @@ class ProdutosController extends Controller
      */
     public function __construct()
     {
-        //$this->middleware('api');
+        //$this->middleware('auth:api');
     }
 
     /**

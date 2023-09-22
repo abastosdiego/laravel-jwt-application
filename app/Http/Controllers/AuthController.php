@@ -8,16 +8,6 @@ use Illuminate\Support\Facades\Log;
 
 class AuthController extends Controller
 {
-/**
-     * Create a new AuthController instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('api', ['except' => ['login']]);
-    }
-
     /**
      * Get a JWT via given credentials.
      *
@@ -43,6 +33,8 @@ class AuthController extends Controller
      */
     public function me()
     {
+        echo 'cheguei no me';
+        exit;
         if (auth()->user()) {
             return response()->json(['status' => 'success', 'user' => auth()->user()]);
         } else {

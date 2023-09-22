@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use  App\Http\Controllers\AuthController;
-use App\Http\Controllers\ProdutosController;
+use App\Http\Controllers\ProdutoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,22 +34,33 @@ Route::group([
 
 */
 
+/**
+ * Grupo de rotas sem autenticação
+ */
 Route::middleware('api')->group(function () {
-
     Route::post('/login', [AuthController::class, 'login']);
+});
+
+
+/**
+ * Grupo de rotas que exige autenticação
+ */
+Route::middleware('auth:api')->group(function () {
+
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::post('/refresh', [AuthController::class, 'refresh']);
     Route::post('/me', [AuthController::class, 'me']);
 
-    Route::get('/produtos', [ProdutosController::class, 'index'])->name('produtos.index');
-    Route::get('/produtos/{id}', [ProdutosController::class, 'show'])->name('produtos.show');
-    Route::post('/produtos', [ProdutosController::class, 'store'])->name('produtos.store');
-    Route::put('/produtos/{produto}', [ProdutosController::class, 'update'])->name('produtos.update');
-    Route::delete('/produtos/{produto}', [ProdutosController::class, 'destroy'])->name('produtos.destroy');
+
+    Route::controller(ProdutoController::class)->group(function () {
+        Route::get('/produtos', 'index')->name('produtos.index');
+        Route::get('/produtos/{id}', 'show')->name('produtos.show');
+        Route::post('/produtos', 'store')->name('produtos.store');
+        Route::put('/produtos/{produto}', 'update')->name('produtos.update');
+        Route::delete('/produtos/{produto}', 'destroy')->name('produtos.destroy');
+    });
 
 });
-
-
 
 
 /*Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
