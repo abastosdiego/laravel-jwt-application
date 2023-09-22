@@ -41,15 +41,11 @@ Route::middleware('api')->group(function () {
     Route::post('/refresh', [AuthController::class, 'refresh']);
     Route::post('/me', [AuthController::class, 'me']);
 
-
-    Route::get('/teste', function() {
-        return 'cheguei na rota de teste de api!';
-    });
-
     Route::get('/produtos', [ProdutosController::class, 'index'])->name('produtos.index');
     Route::get('/produtos/{id}', [ProdutosController::class, 'show'])->name('produtos.show');
     Route::post('/produtos', [ProdutosController::class, 'store'])->name('produtos.store');
     Route::put('/produtos/{produto}', [ProdutosController::class, 'update'])->name('produtos.update');
+    Route::delete('/produtos/{produto}', [ProdutosController::class, 'destroy'])->name('produtos.destroy');
 
 });
 

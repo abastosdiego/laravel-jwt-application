@@ -46,8 +46,10 @@ class ProdutosController extends Controller
             'tipo_produto' => ['required','int','exists:tipo_produtos,id']
         ]);*/
 
+        Produto::create($request->all());
+
         return response(
-            Produto::create($request->all()),
+            '{"message": "Produto cadastrado com sucesso!"',
             201
         );
     }
@@ -73,8 +75,13 @@ class ProdutosController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Produto $produto)
     {
-        //
+        $produto->delete();
+
+        return response(
+            '{"message": "Excluído com sucesso"',
+            200
+        );
     }
 }
