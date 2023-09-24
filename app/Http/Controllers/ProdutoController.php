@@ -12,7 +12,6 @@ class ProdutoController extends Controller
      */
     public function index()
     {
-        //return abort(404, 'página não encontrada');
         return response(Produto::get(), 200);
     }
 
@@ -29,12 +28,6 @@ class ProdutoController extends Controller
      */
     public function store(ProdutoRequest $request)
     {
-        // A Validação passou para dentro do ProdutoRequest
-        /*$request->validate([
-            'descricao' => ['required','string','between:2,100'],
-            'tipo_produto' => ['required','int','exists:tipo_produtos,id']
-        ]);*/
-
         Produto::create($request->all());
 
         return response(
@@ -49,16 +42,12 @@ class ProdutoController extends Controller
      */
     public function update(ProdutoRequest $request, Produto $produto)
     {
-        // A Validação passou para dentro do ProdutoRequest
-        /*
-        $request->validate([
-            'descricao' => ['required','string','between:2,100'],
-            'tipo_produto' => ['required','int','exists:tipo_produtos,id']
-        ]);*/
-
         $produto->update($request->all());
 
-        return $produto;
+        return response(
+            '{"message": "Atualizado com sucesso"',
+            200
+        );
     }
 
     /**

@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Tipo_Produto extends Model
+class TipoProduto extends Model
 {
     use HasFactory;
     protected $table = 'tipo_produtos';
+    protected $fillable = ['descricao'];
 
     /**
      * Define a relação de Tipo de Produto com Produto

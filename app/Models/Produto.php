@@ -14,7 +14,7 @@ class Produto extends Model
     /**
      * Define a relação entre Produto e Tipo de Produto
      */
-    public function tipo_produto() {
-        return $this->belongsTo(Tipo_Produto::class);
+    public function tipoProduto() {
+        return $this->belongsTo(TipoProduto::class);
     }
 }

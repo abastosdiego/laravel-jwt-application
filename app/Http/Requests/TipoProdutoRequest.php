@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProdutoRequest extends FormRequest
+class TipoProdutoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,6 @@ class ProdutoRequest extends FormRequest
     {
         return [
             'descricao' => ['required','string','between:2,100'],
-            'tipo_produto' => ['required','int','exists:tipo_produtos,id']
         ];
     }
 }
