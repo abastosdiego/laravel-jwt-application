@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use  App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\TipoProdutoController;
+use App\Http\Controllers\UsuarioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +34,15 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::post('/refresh', [AuthController::class, 'refresh']);
     Route::post('/me', [AuthController::class, 'me']);
+    Route::put('/updatePassword', [AuthController::class, 'updatePassword']);
 
+    Route::controller(UsuarioController::class)->group(function () {
+        Route::get('/usuarios', 'index');
+        Route::get('/usuarios/{user}', 'show');
+        Route::post('/usuarios', 'store');
+        Route::put('/usuarios/{user}', 'update');
+        Route::delete('/usuarios/{user}', 'destroy');
+    });
 
     Route::controller(ProdutoController::class)->group(function () {
         Route::get('/produtos', 'index')->name('produtos.index');

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserRequest;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -13,71 +15,54 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
+        return response(User::get(), 200);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(User $user)
     {
-        //
+        return $user;
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Store a newly created resource in storage.
      */
-    public function edit(string $id)
+    public function store(UserRequest $request)
     {
-        //
+        User::create(request(['name', 'email', 'password']));
+
+        return response(
+            '{"message": "Cadastrado com sucesso!"}',
+            201
+        );
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UserRequest $request, User $user)
     {
-        //
+        $user->update(request(['name', 'email', 'password']));
+
+        return response(
+            '{"message": "Atualizado com sucesso"}',
+            200
+        );
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(User $user)
     {
-        //
-    }
-
-    /**
-     * Update the password for the user.
-     */
-    public function updatePassword(Request $request)
-    {
-        // Validate the new password length...
-
-        $request->user()->fill([
-            'password' => Hash::make($request->newPassword)
-        ])->save();
+        $user->delete();
 
         return response(
-            '{"message": "Senha atualizada com sucesso"',
+            '{"message": "Excluído com sucesso"}',
             200
         );
     }
+
 }

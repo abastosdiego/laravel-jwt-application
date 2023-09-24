@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 
 class AuthController extends Controller
@@ -57,7 +58,7 @@ class AuthController extends Controller
      */
     public function refresh()
     {
-        return $this->respondWithToken(auth()->refresh());
+        //return $this->respondWithToken(auth()->refresh());
     }
 
     /**
@@ -74,5 +75,25 @@ class AuthController extends Controller
             'token_type' => 'bearer',
             'expires_in_minutes' => auth()->factory()->getTTL()
         ]);
+    }
+
+    /**
+     * Update the password for the user.
+     */
+    public function updatePassword(Request $request)
+    {
+        // Validate the new password length...
+         $request->validate([
+            'newPassword' => ['required','string','between:8,20'],
+        ]);
+
+        $request->user()->fill([
+            'password' => Hash::make($request->newPassword)
+        ])->save();
+
+        return response(
+            '{"message": "Senha atualizada com sucesso"',
+            200
+        );
     }
 }

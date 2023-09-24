@@ -32,7 +32,7 @@ class TipoProdutoController extends Controller
         TipoProduto::create($request->all());
 
         return response(
-            '{"message": "Cadastrado com sucesso!"',
+            '{"message": "Cadastrado com sucesso!"}',
             201
         );
     }
@@ -45,7 +45,7 @@ class TipoProdutoController extends Controller
         $tipoProduto->update($request->all());
 
         return response(
-            '{"message": "Atualizado com sucesso"',
+            '{"message": "Atualizado com sucesso"}',
             200
         );
     }
@@ -58,7 +58,7 @@ class TipoProdutoController extends Controller
         $tipoProduto->delete();
 
         return response(
-            '{"message": "Excluído com sucesso"',
+            '{"message": "Excluído com sucesso"}',
             200
         );
     }

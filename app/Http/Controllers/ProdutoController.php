@@ -31,7 +31,7 @@ class ProdutoController extends Controller
         Produto::create($request->all());
 
         return response(
-            '{"message": "Cadastrado com sucesso!"',
+            '{"message": "Cadastrado com sucesso!"}',
             201
         );
     }
@@ -45,7 +45,7 @@ class ProdutoController extends Controller
         $produto->update($request->all());
 
         return response(
-            '{"message": "Atualizado com sucesso"',
+            '{"message": "Atualizado com sucesso"}',
             200
         );
     }
@@ -58,7 +58,7 @@ class ProdutoController extends Controller
         $produto->delete();
 
         return response(
-            '{"message": "Excluído com sucesso"',
+            '{"message": "Excluído com sucesso"}',
             200
         );
     }
