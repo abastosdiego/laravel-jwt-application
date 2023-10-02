@@ -24,6 +24,8 @@ use App\Http\Controllers\UsuarioController;
  */
 Route::middleware('api')->group(function () {
     Route::post('/login', [AuthController::class, 'login']);
+
+    Route::get('/tiposprodutos', [TipoProdutoController::class, 'index'])->name('tiposprodutos.index');
 });
 
 /**
@@ -53,7 +55,6 @@ Route::middleware('auth:api')->group(function () {
     });
 
     Route::controller(TipoProdutoController::class)->group(function () {
-        Route::get('/tiposprodutos', 'index')->name('tiposprodutos.index');
         Route::get('/tiposprodutos/{tipoProduto}', 'show')->name('tiposprodutos.show');
         Route::post('/tiposprodutos', 'store')->name('tiposprodutos.store');
         Route::put('/tiposprodutos/{tipoProduto}', 'update')->name('tiposprodutos.update');
