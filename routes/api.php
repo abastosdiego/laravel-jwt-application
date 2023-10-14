@@ -25,6 +25,8 @@ use App\Http\Controllers\UsuarioController;
 Route::middleware('api')->group(function () {
     Route::post('/login', [AuthController::class, 'login']);
 
+    Route::get('/produtos', [ProdutoController::class, 'index'])->name('produtos.index');
+
     Route::get('/tiposprodutos', [TipoProdutoController::class, 'index'])->name('tiposprodutos.index');
 });
 
@@ -47,7 +49,6 @@ Route::middleware('auth:api')->group(function () {
     });
 
     Route::controller(ProdutoController::class)->group(function () {
-        Route::get('/produtos', 'index')->name('produtos.index');
         Route::get('/produtos/{id}', 'show')->name('produtos.show');
         Route::post('/produtos', 'store')->name('produtos.store');
         Route::put('/produtos/{produto}', 'update')->name('produtos.update');
