@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\TipoProdutoRequest;
 use App\Models\TipoProduto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class TipoProdutoController extends Controller
 {
@@ -21,6 +22,7 @@ class TipoProdutoController extends Controller
      */
     public function show(TipoProduto $tipoProduto)
     {
+        Log::info($tipoProduto?->imagem?->caminho);
         return $tipoProduto;
     }
 

@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use  App\Http\Controllers\AuthController;
+use App\Http\Controllers\ImagemController;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\TipoProdutoController;
 use App\Http\Controllers\UsuarioController;
@@ -28,6 +29,8 @@ Route::middleware('api')->group(function () {
     Route::get('/produtos', [ProdutoController::class, 'index'])->name('produtos.index');
 
     Route::get('/tiposprodutos', [TipoProdutoController::class, 'index'])->name('tiposprodutos.index');
+
+    Route::post('/uploadimagem',[ImagemController::class, 'upload']);
 });
 
 /**
@@ -61,6 +64,7 @@ Route::middleware('auth:api')->group(function () {
         Route::put('/tiposprodutos/{tipoProduto}', 'update')->name('tiposprodutos.update');
         Route::delete('/tiposprodutos/{tipoProduto}', 'destroy')->name('tiposprodutos.destroy');
     });
+
 
 });
 
