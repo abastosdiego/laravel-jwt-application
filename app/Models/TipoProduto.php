@@ -29,4 +29,10 @@ class TipoProduto extends Model
     {
         return $this->belongsTo(Imagem::class, 'id_imagem');
     }
+
+    public function toArray()
+    {
+        $this->load('imagem');
+        return parent::toArray();
+    }
 }

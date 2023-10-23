@@ -22,7 +22,7 @@ class TipoProdutoController extends Controller
      */
     public function show(TipoProduto $tipoProduto)
     {
-        Log::info($tipoProduto?->imagem?->caminho);
+        //Log::info($tipoProduto?->imagem?->caminho);
         return $tipoProduto;
     }
 
